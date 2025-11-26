@@ -65,12 +65,46 @@ async function adicionarMembro() {
     console.log("\n --- Adicionar Membro --- ");
     const nome = teclado("Nome: ");
     const endereco = teclado("Endereço: ");
-    const telefone = teclado("Telefone: ");
-    const nrMatricula = teclado("Número de matrícula: ");
+    const telefone = teclado("Telefone (Formato: 53 999999999): ");
+    const nrMatricula = teclado("Número de matrícula (4 dígitos): ");
 
     if (!nome.trim() || !endereco.trim() || !telefone.trim() || !nrMatricula.trim()) {
         console.log("\nErro: Todos os campos são obrigatórios!");
         return;
+    }
+
+    if (!telefone.includes(' ')) {
+        console.log("\nErro: Telefone deve conter um espaço no formato 53 999999999!");
+        return;
+    }
+
+    const partes = telefone.split(' ');
+    if (partes.length !== 2) {
+        console.log("\nErro: Telefone deve ter apenas um espaço no formato 53 999999999!");
+        return;
+    }
+
+    const dddValido = partes[0]!.length === 2;
+    const numeroValido = partes[1]!.length === 9;
+
+    if (!dddValido || !numeroValido) {
+        console.log("\nErro: Telefone deve estar no formato 53 999999999 (2 dígitos - espaço - 9 dígitos)!");
+        return;
+    }
+
+    // Validação de matrícula: deve ter exatamente 4 dígitos numéricos
+    if (nrMatricula.trim().length !== 4) {
+        console.log("\nErro: Número de matrícula deve ter exatamente 4 dígitos!");
+        return;
+    }
+
+    // Verifica se todos os caracteres são números
+    for (let i = 0; i < nrMatricula.trim().length; i++) {
+        const caractere = nrMatricula.trim()[i]!;
+        if (caractere < '0' || caractere > '9') {
+            console.log("\nErro: Número de matrícula deve conter apenas números!");
+            return;
+        }
     }
 
     const novoMembro = new Membro(nome.trim(), endereco.trim(), telefone.trim(), nrMatricula.trim());

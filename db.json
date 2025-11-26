@@ -9,7 +9,22 @@
       "disponivel": false
     }
   ],
-  "membros": [],
+  "membros": [
+    {
+      "id": "4819",
+      "nome": "Heitor Barbosa Hepp",
+      "endereco": "Rua teste 1",
+      "telefone": "53 999999999",
+      "nrMatricula": "1212"
+    },
+    {
+      "id": "2916",
+      "nome": "Arthur Holz",
+      "endereco": "Rua teste 10",
+      "telefone": "53 999999991",
+      "nrMatricula": "2039"
+    }
+  ],
   "emprestimos": [
     {
       "id": "273e",
